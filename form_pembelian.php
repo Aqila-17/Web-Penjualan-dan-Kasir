@@ -1,6 +1,14 @@
 <?php 
 require "fungsi.php";
-
+session_start();
+if (
+    !isset($_SESSION["login"]) ||
+    !in_array($_SESSION["role"], ["superadmin", "kasir", "admin"])
+) {
+    header("Location: index.php");
+    exit;
+}
+$barang = tampil("SELECT * FROM barang");
 $barang = tampil("SELECT * FROM barang");
 
 if (isset($_POST["beli"])) {

@@ -36,7 +36,6 @@ $barang = tampil("SELECT * FROM barang");
               <th>Nama</th>
               <th>Stok</th>
               <th>Harga</th>
-              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -49,11 +48,6 @@ $barang = tampil("SELECT * FROM barang");
                   <td><?= $rows["nama_barang"]; ?></td>
                   <td><?= $rows["stok"]; ?></td>
                   <td><?= $rows["harga"]; ?></td>
-                  <td>
-                    <a href="tambah_stok.php" class="btn btn-primary btn-sm">Tambah Stok</a>
-                    <a href="edit.php?id_barang=<?= $rows['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="hapus.php?id_barang=<?= $rows['id_barang']; ?>" onclick="return confirm('Yakin hapus barang ini?')" class="btn btn-outline-primary btn-sm">Delete</a>
-                  </td>
                 </tr>
               <?php endforeach; ?>
             <?php endif; ?>

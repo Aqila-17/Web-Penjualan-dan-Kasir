@@ -26,7 +26,7 @@ $barang = tampil("SELECT * FROM barang");
 
   <div class="container my-4">
     <h2 class="mb-3">Data Barang</h2>
-    <a href="tambah.php" class="btn btn-primary mb-3">+ Tambah Barang</a>
+    
     <div class="card p-3">
       <div class="table-responsive">
         <table class="table table-bordered table-hover text-center align-middle">
@@ -51,8 +51,7 @@ $barang = tampil("SELECT * FROM barang");
                   <td><?= $rows["harga"]; ?></td>
                   <td>
                     <a href="tambah_stok.php" class="btn btn-primary btn-sm">Tambah Stok</a>
-                    <a href="edit.php?id_barang=<?= $rows['id_barang']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="hapus.php?id_barang=<?= $rows['id_barang']; ?>" onclick="return confirm('Yakin hapus barang ini?')" class="btn btn-outline-primary btn-sm">Delete</a>
+                   
                   </td>
                 </tr>
               <?php endforeach; ?>

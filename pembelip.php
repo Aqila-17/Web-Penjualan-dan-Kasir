@@ -35,7 +35,7 @@ $pembeli = tampil("SELECT * FROM pembeli");
               <th>Nama</th>
               <th>Alamat</th>
               <th>No HP</th>
-              <th>Aksi</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -48,10 +48,7 @@ $pembeli = tampil("SELECT * FROM pembeli");
                   <td><?= $rows["nama_pembeli"]; ?></td>
                   <td><?= $rows["alamat"]; ?></td>
                   <td><?= $rows["no_hp"]; ?></td>
-                  <td>
-                    <a href="edit_pembeli.php?id=<?= $rows['id_pembeli']; ?>" class="btn btn-primary btn-sm">Edit</a>
-                    <a href="hapus_pembeli.php?id=<?= $rows['id_pembeli']; ?>" onclick="return confirm('Yakin hapus pembeli ini?')" class="btn btn-outline-primary btn-sm">Delete</a>
-                  </td>
+                  
                 </tr>
               <?php endforeach; ?>
             <?php endif; ?>

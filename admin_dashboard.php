@@ -12,19 +12,7 @@ if (
 }
 
 
-$transaksi = tampil("
-    SELECT 
-        t.id_transaksi, 
-        b.nama_barang, 
-        p.nama_pembeli, 
-        t.jumlah, 
-        t.total_harga, 
-        t.tanggal_transaksi
-    FROM transaksi t
-    JOIN barang b ON t.id_barang = b.id_barang
-    JOIN pembeli p ON t.id_pembeli = p.id_pembeli
-    ORDER BY t.id_transaksi DESC
-");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,9 +66,6 @@ $transaksi = tampil("
     <div class="hero">
       <h1>Selamat Datang, <?= $_SESSION["username"]; ?>!</h1>
       <p>Anda login sebagai <strong><?= $_SESSION["role"]; ?></strong></p>
-      <a href="form_pembelian.php" class="btn btn-light btn-lg mt-3">
-        + Tambah Pembelian
-      </a>
       <div class="mt-3">
         <a href="logout.php" class="btn btn-outline-light">Logout</a>
       </div>
@@ -89,7 +74,7 @@ $transaksi = tampil("
     
     <div class="row g-4 mb-5">
       <div class="col-md-4">
-        <a href="barang.php" class="text-decoration-none">
+        <a href="barangp.php" class="text-decoration-none">
           <div class="card p-4 text-center">
             <h5>Data Barang</h5>
             <p>Kelola stok, harga, dan informasi barang dengan cepat.</p>
@@ -98,7 +83,7 @@ $transaksi = tampil("
         </a>
       </div>
       <div class="col-md-4">
-        <a href="pembeli.php" class="text-decoration-none">
+        <a href="pembelip.php" class="text-decoration-none">
           <div class="card p-4 text-center">
             <h5>Data Pembeli</h5>
             <p>Kelola data pembeli, alamat, dan kontak dengan rapi.</p>
@@ -107,7 +92,7 @@ $transaksi = tampil("
         </a>
       </div>
       <div class="col-md-4">
-        <a href="transaksi.php" class="text-decoration-none">
+        <a href="transaksip.php" class="text-decoration-none">
           <div class="card p-4 text-center">
             <h5>Data Transaksi</h5>
             <p>Kelola transaksi, riwayat pembelian, dan laporan.</p>
@@ -118,41 +103,7 @@ $transaksi = tampil("
     </div>
 
    
-    <div class="card p-4">
-      <h3 class="mb-3 text-primary">Ringkasan Transaksi Terbaru</h3>
-      <div class="table-responsive">
-        <table class="table table-bordered table-hover text-center align-middle">
-          <thead class="table-primary">
-            <tr>
-              <th>No</th>
-              <th>Nama Barang</th>
-              <th>Nama Pembeli</th>
-              <th>Jumlah</th>
-              <th>Total Harga</th>
-              <th>Tanggal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php if (empty($transaksi)) : ?>
-              <tr><td colspan="6">Belum ada transaksi</td></tr>
-            <?php else: ?>
-              <?php $i=1; foreach ($transaksi as $t): ?>
-              <tr>
-                <td><?= $i++; ?></td>
-                <td><?= $t["nama_barang"]; ?></td>
-                <td><?= $t["nama_pembeli"]; ?></td>
-                <td><?= $t["jumlah"]; ?></td>
-                <td><?= number_format($t["total_harga"],0,',','.'); ?></td>
-                <td><?= $t["tanggal_transaksi"]; ?></td>
-              </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-  </div>
+    
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

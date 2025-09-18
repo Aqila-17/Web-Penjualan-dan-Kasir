@@ -2,7 +2,7 @@
 require "fungsi.php";
 session_start();
 if (!isset($_SESSION["login"]) || $_SESSION["role"] !== "superadmin") {
-    header("Location: transaksi.php");
+    header("Location: admin_dashboard.php");
     exit;
 }
 $transaksi = tampil("SELECT * FROM transaksi");

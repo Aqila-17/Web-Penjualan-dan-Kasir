@@ -88,12 +88,12 @@ function hapusPembeli($id){
 function tambahPembelianBaru($nama_pembeli, $alamat, $no_hp, $id_barang, $jumlah) {
     global $conn;
 
-    // simpan pembeli baru
+    
     mysqli_query($conn, "INSERT INTO pembeli (nama_pembeli, alamat, no_hp) 
                          VALUES ('$nama_pembeli', '$alamat', '$no_hp')");
-    $id_pembeli = mysqli_insert_id($conn); // ambil id_pembeli terakhir
+    $id_pembeli = mysqli_insert_id($conn); 
 
-    // cek barang
+    
     $barang = tampil("SELECT * FROM barang WHERE id_barang = $id_barang")[0];
     $stok   = $barang["stok"];
     $harga  = $barang["harga"];
@@ -106,10 +106,10 @@ function tambahPembelianBaru($nama_pembeli, $alamat, $no_hp, $id_barang, $jumlah
     $total   = $jumlah * $harga;
     $tanggal = date("Y-m-d H:i:s");
 
-    // update stok
+    
     mysqli_query($conn, "UPDATE barang SET stok = $sisa WHERE id_barang = $id_barang");
 
-    // simpan transaksi
+    
     $query = "INSERT INTO transaksi (id_barang, id_pembeli, jumlah, total_harga, tanggal_transaksi)
               VALUES ($id_barang, $id_pembeli, $jumlah, $total, '$tanggal')";
     mysqli_query($conn, $query);
@@ -117,4 +117,18 @@ function tambahPembelianBaru($nama_pembeli, $alamat, $no_hp, $id_barang, $jumlah
     return "sukses";
 }
 
+
+
+function login($username, $password) {
+    global $conn;
+    $query = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) === 1) {
+        $user = mysqli_fetch_assoc($result);
+        if(password_verify($password, $user["password"])) {
+            return $user;
+        }
+    }
+    return false;
+}
 ?>
